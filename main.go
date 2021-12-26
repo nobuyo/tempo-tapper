@@ -68,14 +68,14 @@ func handleTap() {
 
 	for {
 		select {
-			case <- input:
-				d := time.Since(s)
-				durations = append(durations, d)
-				if len(durations) > 4 {
-					durations = durations[len(durations)-4:]
-				}
-				fmt.Printf("\r%3d", calcBpm(durations))
-				s = time.Now()
+		case <-input:
+			d := time.Since(s)
+			durations = append(durations, d)
+			if len(durations) > 4 {
+				durations = durations[len(durations)-4:]
+			}
+			fmt.Printf("\r%3d", calcBpm(durations))
+			s = time.Now()
 		}
 	}
 }
